@@ -1,7 +1,10 @@
+# Importe le module EnigmaMachine depuis enigma.machine
+from enigma.machine import EnigmaMachine
+
 ciphertext = 'YJPYITREDSYUPIU'
 cribtext = 'THISXISXWORIKING'
 
-# Toutes les combinaison possible de rotors
+# Toutes les combinaison possible des valeurs des rotors
 rotors = [ "I II III", "I II IV", "I II V", "I III II",
 "I III IV", "I III V", "I IV II", "I IV III",
 "I IV V", "I V II", "I V III", "I V IV",
@@ -19,20 +22,21 @@ rotors = [ "I II III", "I II IV", "I II V", "I III II",
 "V III IV", "V IV I", "V IV II", "V IV III" ]
 
 # Fonction qui prend les arguments : choix du rotor, le texte cipher et le texte crib
-def find_rotor_start( rotor_choice, ciphertext, cribtext ):
-    from enigma.machine import EnigmaMachine
+def find_rotor_start(rotor_choice, ciphertext, cribtext):
     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-    machine = EnigmaMachine.from_key_sheet(
-        rotors=rotor_choice,
-        reflector='B',
-        ring_settings='1 1 1',
-        plugboard_settings='AV BS CG DL FU HZ IN KM OW RX')
 
     # Effectue les recheches de toutes les combinaison possible de rotors
     for rotor1 in alphabet:
         for rotor2 in alphabet:
             for rotor3 in alphabet:
+    
+                # Initialise la machine Enigma à chaque nouvelle combinaison de rotors
+                machine = EnigmaMachine.from_key_sheet(
+                    rotors=rotor_choice.split(),
+                    reflector='B',
+                    ring_settings=[1, 1, 1],
+                    plugboard_settings='AV BS CG DL FU HZ IN KM OW RX'
+                )
 
                 # Genère un possition possible des rotors
                 start_pos = rotor1 + rotor2 + rotor3
@@ -42,7 +46,7 @@ def find_rotor_start( rotor_choice, ciphertext, cribtext ):
 
                 # Le programme essaye de décrypter
                 plaintext = machine.process_text(ciphertext)
-                print( plaintext )
+                print(f"Essai de {rotor_choice} avec {start_pos} : {plaintext}")
 
                 # Check si cela les message correspond
                 if plaintext == cribtext:
@@ -52,16 +56,9 @@ def find_rotor_start( rotor_choice, ciphertext, cribtext ):
     # Si ils ne correpsont pas, alors le programme dit simplement qu'il n'a pas trouvé les paramètre
     return rotor_choice, "Les paramètre n'ont pas été trouvé"
 
-# Faudra expliquer se code
+# Boucle sur toutes les combinaisons possibles des rotors
 for rotor_setting in rotors:
-    rotor_choice, start_pos = find_rotor_start( rotor_setting, ciphertext, cribtext )
+    rotor_choice, start_pos = find_rotor_start(rotor_setting, ciphertext, cribtext)
     print(rotor_choice + " " + start_pos )
     if start_pos != "Les paramètre n'ont pas été trouvé":
         break
-                
-
-
-
-
-
-    
