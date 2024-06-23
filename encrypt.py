@@ -1,8 +1,8 @@
 # Importe le module EnigmaMachine depuis enigma.machine
 from enigma.machine import EnigmaMachine
 
-# Demande les postions des rotors à l'utilisateur
-rotinput=input("Quelles sont la position des rotors ? (exemple : IV I V)\n")
+# Demande les valeurs des rotors à l'utilisateur
+rotinput=input("Quelles sont les valeurs des rotors ? (exemple : IV I V)\n")
 
 # Boucle, pour les rotors, pour que l'utilisateur entre forcément une valeur 
 while rotinput == "":
