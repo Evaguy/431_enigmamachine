@@ -15,7 +15,8 @@ ringinput=input("Quelles sont les valeurs des anneaux ? (exemple : 20 5 10)\n")
 while rotinput == "":
     rotinput=input("Entrez impérativement les valeurs des anneaux !!!\n")
 
-# Demande les 10 pairs du tableau de connexion à l'utilisateur
+# Demande les 10 pairs du tableau de connexion à l'utilisateur,
+# sinon il utilise ceux de base
 plugboardinput=input("Quelles sont les 10 paires du tableau de connexion ?\nSi vous ne mettez rien, ces paramètres seront utilisés : SX KU QP VN JG TC LA WM OB ZF\n")
 
 # Si l'utilisateur n'entre aucune paires, le programme utilise ceux de base
@@ -40,19 +41,20 @@ while displayinput == "":
 # Mise en place de la position initiale des rotors
 machine.set_display(displayinput)
 
-# Encrypte le texte 'BFR' et l'enregistre dans une clé : msg_key
-cle = input('Quelle clé souhaitez-vous pour encrypter le texte ?\n')
+# Demande la clé de message a l'utilisateur
+# et l'enregistre dans une variable "msg_key"
+cle = input('Quelle est la clé de message ?\n')
 msg_key = machine.process_text(cle)
-print(f"La clé de message est : {msg_key}")
+print(f"Clé cryptée que vous enverrez avec votre message : {msg_key}")
 
-# Réinitialise la position initiale des rotors avec la clé du message
+# Réinitialise la position initiale des rotors avec la "msg_key"
 machine.set_display(msg_key)
 
 # Converti le texte de l'utilisateur et affiche le résultat
-# après être converti en ciphertext
-plaintext = input('Quel mot souhaitez-vous encrypter ?\n')
+# après être converti en "cipher"
+plaintext = input('Quel texte souhaitez-vous encrypter ?\n')
 ciphertext = machine.process_text(plaintext)
-print(f'Voici le texte codé : {ciphertext}')
+print(f'Voici le texte crypté avec la clé de départ : {msg_key} {ciphertext}')
 
 # Message de fin du programme
 print("Merci d'avoir utilisé notre programme !")

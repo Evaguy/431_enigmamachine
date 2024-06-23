@@ -2,14 +2,14 @@
 from enigma.machine import EnigmaMachine
 
 # Demande les valeurs des rotors à l'utilisateur
-rotinput=input("Quelle est les valeurs des rotors ? (exemple : IV I V)\n")
+rotinput=input("Quelles sont les valeurs des rotors ? (exemple : IV I V)\n")
 
 # Boucle, pour les rotors, pour que l'utilisateur entre forcément une valeur 
 while rotinput == "":
     rotinput=input("Entrez impérativement la postition des rotor !!!\n")
 
 # Demande les position des anneaux à l'utilisateur
-ringinput=input("Quelles sont la valeure des anneaux ? (exemple : 20 5 10)\n")
+ringinput=input("Quelles sont les valeurs des anneaux ? (exemple : 20 5 10)\n")
 
 # Boucle, pour les anneaux, pour que l'utilisateur entre forcément une valeur
 while rotinput == "":
@@ -40,11 +40,11 @@ while displayinput == "":
 # Mise en place de la position initiale des rotors
 machine.set_display(displayinput)
 
-# Demande a l'utilisateur la clé de décryptage
-# et l'enregistre dans un fonction msg_key
+# Demande une clé a l'utilisateur pour encrypter le texte
+# et l'enregistre dans une variable "msg_key"
 cle = input('Quelle est votre clé pour décrypter le texte ?\n')
 msg_key = machine.process_text(cle)
-print(f"La clé de message est : {msg_key}")
+print(f"Clé decryptée : {msg_key}")
 
 # Règle la nouvelle postion des rotors
 machine.set_display(msg_key)
