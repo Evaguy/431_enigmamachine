@@ -57,3 +57,6 @@ print(f'Voici le texte décodé : {plaintext}')
 
 # Message de fin du programme
 print("Merci d'avoir utilisé notre programme !")
+
+# utilisation de ce guide pour faire le programme :
+# https://projects.raspberrypi.org/en/projects/octapi-brute-force-enigma/1

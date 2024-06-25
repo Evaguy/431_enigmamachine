@@ -58,3 +58,6 @@ print(f'Voici le texte crypté avec la clé de départ : {msg_key} {ciphertext}'
 
 # Message de fin du programme
 print("Merci d'avoir utilisé notre programme !")
+
+# utilisation de ce guide pour faire le programme :
+# https://projects.raspberrypi.org/en/projects/octapi-brute-force-enigma/1
